@@ -12,7 +12,7 @@ public class DBUtils {
 			if(con==null)
 			
 			 con =  DriverManager.getConnection(
-				    "jdbc:mysql://localhost:3306/db2", "root", "Root"
+				    "jdbc:mysql://localhost:3306/student_db1312", "root", "gojo"
 				);
 		
 		return con;
