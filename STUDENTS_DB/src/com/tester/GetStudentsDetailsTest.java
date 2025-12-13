@@ -15,12 +15,18 @@ public class GetStudentsDetailsTest {
 //		if(con!=null) {
 //			System.out.println("Connection eshtablished...");
 //		}
+//		----------------------------------------------------------
+//		StudentsDAO studentDao= new IStudentDAOImpl(); 
+//		
+//		T student = new T(5,"LaLa","Pandu",19,"M","Fitiyal","Z+");
+//		
+//		int result = studentDao.insert(student);
+//		System.out.println(result);
+//	    -----------------------------------------------------------
 		StudentsDAO studentDao= new IStudentDAOImpl();
-		
-		T student = new T(5,"LaLa","Pandu",19,"M","Fitiyal","Z+");
-		
-		int result = studentDao.insert(student);
-		System.out.println(result);
+		T student = new T(5,"aaa","asdf",23,"F","dfg","z++");
+		studentDao.update(student);
+		System.out.println(student);
 		
 		
 //		T student = studentDao.get(1);

@@ -88,8 +88,21 @@ public class IStudentDAOImpl implements StudentsDAO{
 		Connection con = Database.getConnection();
 		
 		String sql = "update students set student_id = ?, first_name = ?, last_name = ?, age = ?, gender = ?, department = ?, grade = ? where student_id = ?";
-		PreparedStatement = connecti
-		return 0;
+		PreparedStatement ps = con.prepareStatement(sql);
+		
+		ps.setInt(1, t.getStudent_id());
+		ps.setString(2, t.getFirstName());
+		ps.setString(3, t.getLastName());
+		ps.setInt(4, t.getAge());
+		ps.setString(5, t.getGender());
+		ps.setString(6, t.getDepartment());
+		ps.setString(7, t.getGrade());
+		
+		int result = ps.executeUpdate();
+		
+		Database.closePreparedStatement(ps);
+		Database.closeConnection(con);
+		return result;
 	}
 
 	@Override
