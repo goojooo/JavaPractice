@@ -85,7 +85,10 @@ public class IStudentDAOImpl implements StudentsDAO{
 
 	@Override
 	public int update(T t) throws SQLException {
-		// TODO Auto-generated method stub
+		Connection con = Database.getConnection();
+		
+		String sql = "update students set student_id = ?, first_name = ?, last_name = ?, age = ?, gender = ?, department = ?, grade = ? where student_id = ?";
+		PreparedStatement = connecti
 		return 0;
 	}
 
