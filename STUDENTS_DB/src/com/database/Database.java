@@ -2,6 +2,7 @@ package com.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class Database {
@@ -20,4 +21,14 @@ public class Database {
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
+
+	public static void closePreparedStatement(PreparedStatement ps) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static void closeConnection(Connection con) {
+		// TODO Auto-generated method stub
+		
+	}
 }

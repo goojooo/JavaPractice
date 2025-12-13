@@ -16,9 +16,16 @@ public class GetStudentsDetailsTest {
 //			System.out.println("Connection eshtablished...");
 //		}
 		StudentsDAO studentDao= new IStudentDAOImpl();
-		T student = studentDao.get(2);
 		
-		System.out.println(student);
+		T student = new T(5,"LaLa","Pandu",19,"M","Fitiyal","Z+");
+		
+		int result = studentDao.insert(student);
+		System.out.println(result);
+		
+		
+//		T student = studentDao.get(1);
+//		
+//		System.out.println(student);
 	}
 
 }

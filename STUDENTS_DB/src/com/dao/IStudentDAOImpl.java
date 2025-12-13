@@ -61,8 +61,26 @@ public class IStudentDAOImpl implements StudentsDAO{
 
 	@Override
 	public int insert(T t) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		Connection con = Database.getConnection();
+		
+		String sql = "insert into students(student_id,first_name,last_name,age,gender,department,grade) values (?,?,?,?,?,?,?)";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		
+		ps.setInt(1, t.getStudent_id());
+		ps.setString(2, t.getFirstName());
+		ps.setString(3, t.getLastName());
+		ps.setInt(4, t.getAge());
+		ps.setString(5, t.getGender());
+		ps.setString(6, t.getDepartment());
+		ps.setString(7, t.getGrade());
+		
+		int result = ps.executeUpdate();
+		
+		Database.closePreparedStatement(ps);
+		Database.closeConnection(con);
+
+		return result;
 	}
 
 	@Override
