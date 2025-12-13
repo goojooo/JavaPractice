@@ -13,28 +13,37 @@ public class IStudentDAOImpl implements StudentsDAO{
 
 	@Override
 	public T get(int student_id) throws SQLException {
-		Connection con = Database.getConnection();
+//		Connection con = Database.getConnection();
 		T student = null;
 		
-		String sql = "select student_id , firstName, lastName, age, gender, department,grade where id = ?";
-		PreparedStatement ps = con.prepareStatement(sql);
+		String sql =
+			    "SELECT student_id, first_name, last_name, age, gender, department, grade " +
+			    "FROM students WHERE student_id = ?";
+
+//		PreparedStatement ps = con.prepareStatement(sql);
+		
+		   try (
+		            Connection con = Database.getConnection();
+		            PreparedStatement ps = con.prepareStatement(sql);
+		        ) {
 		
 		ps.setInt(1, student_id);
 		ResultSet rs = ps.executeQuery();
 		
 		if(rs.next()) {
-			int students_id = rs.getInt("student_id");
-			String firstName = rs.getString("firstName");
-			String lastName = rs.getString("lastName");
+			int id = rs.getInt("student_id");
+			String firstName = rs.getString("first_name");
+			String lastName = rs.getString("last_name");
 			int age = rs.getInt("age");
 			String gender = rs.getString("gender");
 			String department = rs.getString("department");
-			String grade = rs.getString("garde");
+			String grade = rs.getString("grade");
 			
-			student = new T(student_id, firstName, lastName, age, gender, department,grade);
+			student = new T(id, firstName, lastName, age, gender, department,grade);
 			
 			
 		}
+		   }
 		return student;
 	}
 
