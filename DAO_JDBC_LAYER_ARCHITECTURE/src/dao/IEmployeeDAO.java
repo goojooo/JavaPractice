@@ -9,5 +9,11 @@ public interface IEmployeeDAO {
      List<Employee> getEmployeeDetails(String deptid,String beginDate,String endDate)
      throws SQLException;
      
+     String addEmployeeDetails(Employee e) throws SQLException;
+     
+     String updateEmployeeDetails(int empid , String dept,Double sal) throws SQLException;
+     
+     String deleteEmployeeDetails(int empid) throws SQLException;
+     
      
 }

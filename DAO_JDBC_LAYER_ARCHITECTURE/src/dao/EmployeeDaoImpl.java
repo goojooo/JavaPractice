@@ -13,6 +13,7 @@ import static utils.DBUtils.getConnection;
 public class EmployeeDaoImpl implements IEmployeeDAO {
    private Connection con;//state
      private  PreparedStatement ps;//state
+     private PreparedStatement ps1,ps2,ps3;
    //constructor will be invoked exactly once by main()
     public EmployeeDaoImpl() throws SQLException
     {
@@ -21,7 +22,18 @@ public class EmployeeDaoImpl implements IEmployeeDAO {
     	String sql= "select empid, name, salary, join_date " +
     		    "from my_emp where deptid=? and join_date between ? and ?";
     	 ps = con.prepareStatement(sql);
+    	 
+    	 
+    	 String sqlins = "insert into my_emp values(default,?,?,?,?,?)";
+    	 ps1 = con.prepareStatement(sqlins);
+    	 
+    	 String sqludt = "update my_emp set deptid = ?, salary + ? where empid = ?";
+    	 ps2 = con.prepareStatement(sqludt);
+    	 
+    	 String sqldel = "delete "
     	 System.out.println("emp dao Created");
+    	 
+    	 
     	
     }
 	@Override
@@ -46,15 +58,57 @@ public class EmployeeDaoImpl implements IEmployeeDAO {
 
     	    return l;  // return must be *outside* the try block
     	}
+	@Override
+	public String addEmployeeDetails(Employee e) throws SQLException {
+		
+//		List<Employee> ins = 
+		ps1.setString(1,e.getName());
+		ps1.setString(2, e.getAddress());
+		ps1.setDouble(3, e.getSalary());
+		ps1.setString(4, e.getDeptId());
+		ps1.setDate(5, e.getJoinDate());
+		int count = ps1.executeUpdate();
+		if(count == 1) {
+			return "Record inserted";
+		} else {
+			return "Record not inserted";
+		}
+	}
+	@Override
+	public String updateEmployeeDetails(int empid, String newdept, Double newsal) throws SQLException {
+		
+		ps2.setString(1, newdept);
+		ps2.setDouble(2, newsal);
+		ps2.setInt(3, empid);
+		int count = ps2.executeUpdate();
+		if(count == 1) {
+			return "Recorde updates successfully";
+		} else{
+			return "Recorde not updates successfully";
+		}
+	}
+	
+	@Override
+	public String deleteEmployeeDetails(int empid) throws SQLException {
+	
+		
+	}
 	
 	public void close() throws SQLException
 	{
 		if(ps!=null)
 			ps.close();
+		if(ps1!=null)
+			ps1.close();
+		if(ps2!=null)
+			ps2.close();
 		if(con!=null)
 			con.close();
 		System.out.println("emp dao layer close");
 	}
 	//end of class
+
+
+
 
 }
