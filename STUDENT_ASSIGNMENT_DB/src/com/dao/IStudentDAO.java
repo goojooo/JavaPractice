@@ -9,8 +9,10 @@ import com.pojo.Student;
 
 public interface IStudentDAO {
 	
-	   List<Student> getEmployeeDetails(int stuid ,String name,String gender, String addr)
-			     throws SQLException;
-//	String addStudentDetails(Student e) throws SQLException;
+	List<Student> getStudentsDetails(int stuid ,String name,String gender, String addr) throws SQLException;
+	
+	String addStudentDetails(Student e) throws SQLException;
+	
+	String updateStudentDetails(int stuId, String newName, String newAddr) throws SQLException;
 
 }
