@@ -20,17 +20,18 @@ public class EmployeeDaoImpl implements IEmployeeDAO {
     	//get connection from DButils
     	con=getConnection();
     	String sql= "select empid, name, salary, join_date " +
-    		    "from my_emp where deptid=? and join_date between ? and ?";
+    		    "from my_emo where deptid=? and join_date between ? and ?";
     	 ps = con.prepareStatement(sql);
     	 
     	 
-    	 String sqlins = "insert into my_emp values(default,?,?,?,?,?)";
+    	 String sqlins = "insert into my_emo values(default,?,?,?,?,?)";
     	 ps1 = con.prepareStatement(sqlins);
     	 
-    	 String sqludt = "update my_emp set deptid = ?, salary + ? where empid = ?";
+    	 String sqludt = "update my_emo set deptid = ?, salary = ? where empid = ?";
     	 ps2 = con.prepareStatement(sqludt);
     	 
-    	 String sqldel = "delete "
+    	 String sqldel = "delete from my_emo where empid = ? ";
+    	 ps3 = con.prepareStatement(sqldel);
     	 System.out.println("emp dao Created");
     	 
     	 
@@ -90,7 +91,14 @@ public class EmployeeDaoImpl implements IEmployeeDAO {
 	
 	@Override
 	public String deleteEmployeeDetails(int empid) throws SQLException {
-	
+		ps3.setInt(1, empid);
+		int count = ps3.executeUpdate();
+		if(count==1) {
+			return "record deleted";
+		}
+		else {
+			return "record not deleted";
+		}
 		
 	}
 	
@@ -102,6 +110,8 @@ public class EmployeeDaoImpl implements IEmployeeDAO {
 			ps1.close();
 		if(ps2!=null)
 			ps2.close();
+		if(ps3!=null)
+			ps3.close();
 		if(con!=null)
 			con.close();
 		System.out.println("emp dao layer close");
