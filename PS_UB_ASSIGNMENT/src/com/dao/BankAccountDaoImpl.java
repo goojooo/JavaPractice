@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import static com.utility.UtilityTest.getConnection; // Assuming UtilityTest has the getConnection method
+import static com.utility.UtilityTest.getConnection; 
 
 public class BankAccountDaoImpl implements IBankAccountDAO {
 	
@@ -13,9 +13,9 @@ public class BankAccountDaoImpl implements IBankAccountDAO {
 	private PreparedStatement psDebit;
 	private PreparedStatement psCredit;
 	
-	// SQL Queries for fund transfer (Debit and Credit)
-	private static final String SQL_DEBIT = "UPDATE bankaccounts SET balance = balance - ? WHERE id = ?";
-	private static final String SQL_CREDIT = "UPDATE bankaccounts SET balance = balance + ? WHERE id = ?";
+	// FIX: Use table 'acc', balance column 'bal', and ID column 'accid'
+	private static final String SQL_DEBIT = "UPDATE acc SET bal = bal - ? WHERE accid = ?";
+	private static final String SQL_CREDIT = "UPDATE acc SET bal = bal + ? WHERE accid = ?";
 	
 	/**
 	 * Initializes the connection and PreparedStatements.
@@ -26,7 +26,7 @@ public class BankAccountDaoImpl implements IBankAccountDAO {
 		con = getConnection();
 		
 		// 2. Set auto-commit to false to begin transaction management
-        // All subsequent DML operations will not be committed until con.commit() is called.
+		// All subsequent DML operations will not be committed until con.commit() is called.
 		con.setAutoCommit(false); 
 		
 		// 3. Prepare the statements
@@ -36,21 +36,17 @@ public class BankAccountDaoImpl implements IBankAccountDAO {
 
 	@Override
 	public String transfer_fund(int srcID, int desId, double amt) throws SQLException {
-		// --- Transaction Start ---
+		// --- Transaction Start --- 
 		try {
 			// 1. DEBIT (Source Account)
 			psDebit.setDouble(1, amt); 
 			psDebit.setInt(2, srcID);
-			psDebit.addBatch(); // Add the debit operation to the batch
+			psDebit.addBatch(); 
 			
 			// 2. CREDIT (Destination Account)
 			psCredit.setDouble(1, amt);
 			psCredit.setInt(2, desId);
-			psCredit.addBatch(); // Add the credit operation to the batch
-			
-			// Note: We are using two separate PreparedStatements, 
-			// so we execute them separately to see the individual results.
-			// executeBatch() returns an array of update counts.
+			psCredit.addBatch(); 
 			
 			// Execute the batch for the DEBIT operation
 			int[] debitResult = psDebit.executeBatch();
@@ -73,7 +69,7 @@ public class BankAccountDaoImpl implements IBankAccountDAO {
 			}
 			
 		} catch (SQLException e) {
-			// 5. An exception occurred (e.g., not enough balance, database error)
+			// 5. An exception occurred (e.g., not enough balance, data type error)
 			// ROLLBACK the transaction
 			con.rollback();
 			// Re-throw the exception to inform the caller
@@ -84,9 +80,10 @@ public class BankAccountDaoImpl implements IBankAccountDAO {
 	
 	/**
 	 * Closes the PreparedStatements and the Connection.
+	 * Also resets auto-commit mode to true.
 	 */
 	public void close() throws SQLException {
-		// IMPORTANT: Reset auto-commit mode before closing (optional but good practice)
+		// IMPORTANT: Reset auto-commit mode before closing
 		if (con != null) {
 			con.setAutoCommit(true);
 		}
