@@ -16,9 +16,7 @@ public class DeleteStudentDetails {
 			  s.close();
 		 } catch(SQLException e) {
 			 e.printStackTrace();
-		 
-
 	}
-	}
+  }
 
 }
