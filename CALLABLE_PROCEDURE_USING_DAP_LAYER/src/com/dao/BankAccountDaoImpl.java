@@ -35,8 +35,8 @@ public class BankAccountDaoImpl implements IBankAccountDAO {
 		//execute stored procedure
 		cs.execute();
 		StringBuilder sb = new StringBuilder("Funds transfer..."); 
-		sb.append("Updated src balance " + cs.getDouble(4));
-		sb.append("Updated dest balance " + cs.getDouble(5));
+		sb.append(" Updated src balance " + cs.getDouble(4));
+		sb.append(" Updated dest balance " + cs.getDouble(5));
 		return sb.toString();
 		
 	}
