@@ -14,5 +14,7 @@ public interface IStudentDAO {
 	String addStudentDetails(Student e) throws SQLException;
 	
 	String updateStudentDetails(int stuId, String newName, String newAddr) throws SQLException;
+	
+	 String deleteStudentDetails(int stuId) throws SQLException;
 
 }

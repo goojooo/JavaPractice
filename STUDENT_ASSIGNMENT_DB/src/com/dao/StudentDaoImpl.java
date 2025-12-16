@@ -12,7 +12,7 @@ import com.pojo.Student;
 public class StudentDaoImpl implements IStudentDAO {
 
     private Connection con;
-    private PreparedStatement ps,ps1,ps2;
+    private PreparedStatement ps,ps1,ps2,ps3;
 
     public StudentDaoImpl() throws SQLException {
         con = getConnection();
@@ -22,6 +22,9 @@ public class StudentDaoImpl implements IStudentDAO {
         
         String sqludt = "update students set name = ?, addr = ? where stuid = ?";
     	ps2 = con.prepareStatement(sqludt);
+    	
+    	String sqldel = "delete from students where stuid=?";
+    			ps3 = con.prepareStatement(sqldel);
         
     }
 	
@@ -71,12 +74,26 @@ public class StudentDaoImpl implements IStudentDAO {
 			return "Recorde not updates successfully";
 		}
 	}
+	@Override
+	public String deleteStudentDetails(int stuId) throws SQLException {
+		ps3.setInt(1,stuId);
+	int count = ps3.executeUpdate();
+		
+		if(count == 1) {
+			return "Recorde deled successfully";
+		} else{
+			return "Recorde not deleted successfully";
+		}
+		
+	}
 	
 	public void close() throws SQLException{
 		if(ps!=null)
 			ps.close();
 		
 	}
+
+
 
 
 
