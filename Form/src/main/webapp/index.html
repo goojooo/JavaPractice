@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>FORM</title>
+<style>
+#con{
+display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border:2px solid black;
+    width: 50%;
+    padding: 40px;
+        margin: 0 auto;
+}
+</style>
+</head>
+<body>
+<div id="con">
+<h1 style="text-align:left">FORM</h1>
+<div>
+<form action="MyForm">
+<label name="name">Enter your name:</label> <br/> <br />
+<input type="text" name="name" placeholder="Enter Name" /> <br/> <br />
+<label >Choose Colors:</label> <br/> <br />
+<label name="cb">Red</label>
+
+<input type="checkbox" name="cb" /> <br/> <br />
+<label name="cb">Orange</label>
+<input type="checkbox" name="cb" /> <br/> <br />
+<label name="cb">Green</label>
+<input type="checkbox" name="cb" /> <br/> <br />
+<label name="browser">Chrome</label>
+<input type="radio" name="browser"  /> <br/> <br/>
+<label name="browser">FireFox</label>
+<input type="radio" name="browser"  /> <br/> <br/>
+<label for="city">Choose a City:</label>
+<select id="city" name="city_name">
+  <option value="Napgur">Napgur</option>
+  <option value="Pune">Pune</option>
+  <option value="Hydrabad">Hydrabad</option>
+</select>
+<input type="submit" value="Login" />
+</form>
+</div>
+
+</div>
+</body>
+</html>

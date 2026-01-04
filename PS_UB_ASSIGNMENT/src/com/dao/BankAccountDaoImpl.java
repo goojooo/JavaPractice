@@ -14,8 +14,8 @@ public class BankAccountDaoImpl implements IBankAccountDAO {
 	private PreparedStatement psCredit;
 	
 	// FIX: Use table 'acc', balance column 'bal', and ID column 'accid'
-	private static final String SQL_DEBIT = "UPDATE acc SET bal = bal - ? WHERE accid = ?";
-	private static final String SQL_CREDIT = "UPDATE acc SET bal = bal + ? WHERE accid = ?";
+	 String SQL_DEBIT = "UPDATE acc SET bal = bal - ? WHERE accid = ?";
+	 String SQL_CREDIT = "UPDATE acc SET bal = bal + ? WHERE accid = ?";
 	
 	/**
 	 * Initializes the connection and PreparedStatements.
