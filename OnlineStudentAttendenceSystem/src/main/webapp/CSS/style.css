@@ -13,7 +13,39 @@ section{
 	padding: 120px 80px;
 	background-color:white;	
 	border-radius:48px;	
+	transition:0.5s;
+}
+section:hover{
+	box-shadow:0 0 5px grey, 0 0 15px grey, inset 0 0 5px grey;
+	border-color:blacl;
+	
 }
 h1{
 	font-weight:700;
+}
+.mw-left {
+	max-width:50%;
+}
+.hero-image img{
+	width:100%;
+}
+.header-btn {
+	display:flex;
+	gap:48px;
+}
+.header-btn a{
+	padding: 8px 20px;
+	text-decoration:none;
+	color:white;
+	font-weight:700;
+	border-radius:24px;
+}
+.header-btn #student{
+	background-color:yellow;
+}
+.header-btn #instructor{
+	background-color:orange;
+}
+.header-btn #admin{
+	background-color:red;
 }

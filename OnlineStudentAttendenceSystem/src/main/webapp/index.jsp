@@ -18,9 +18,9 @@
 			<h1>PRESENNCE : Smart Attendence for <br> Modern Learning</h1>
 		</div>
 		<div class="header-btn">
-			<a href="#">STUDENTS</a>
-			<a href="#">INSTRUCTORS</a>
-			<a href="#">ADMIN</a>
+			<a href="#" id="student">STUDENTS</a>
+			<a href="#" id="instructor">INSTRUCTORS</a>
+			<a href="#" id="admin">ADMIN</a>
 		</div>
 	</div>
 	
