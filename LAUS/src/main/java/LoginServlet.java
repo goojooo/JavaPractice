@@ -59,8 +59,8 @@ public class LoginServlet extends HttpServlet {
 				pw.print("<h3> Invalid login, try again !</h3>");
 			} else {
 				pw.print("<h3 style='color:green; font-size:24px;'> Login successfull...</h3>");
-				pw.print("<h3 style='color:blue; font-size:28px;'> Validate user details "+ user +"</h3>");
-			}
+				pw.print("<h3 style='color:blue; font-size:18px;'> Validate user details "+ user +"</h3>");
+				response.sendRedirect("Topics");		}
 		} catch (SQLException e) {
 			throw new ServletException("Err in init" + getClass().getName(),e);
 			
