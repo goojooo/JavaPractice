@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login Page</title>
+<style type="text/css">
+	section{
+		margin:2%;
+		border:2px solid black;
+		padding:2%;
+		 display: flex;
+		 flex-direction:column;
+	    justify-content: center;
+	    text-align: left;
+	    background:cyan;
+	    align-items:center;
+	}
+	h1{
+	font-size:40px;
+	color:red;
+	margin:0;
+	}
+	span{
+	color:white;
+	font-size:18px;
+	margin:0;
+	}
+</style>
+</head>
+<body>
+	<section>
+	
+		<form action="firstPageUrl" method="post" >
+			<h1>FORM </h1>
+			Person Name : <br> <input type="text" name="pname" /> <br/> <br/>
+			Father Name : <br><input type="text" name="fname" /> <br/> <br/>
+			Address : <br><input type="text" name="address" /> <br/> <br/>
+			Martial status : <input type="radio" name="ms" value="single"/>Single  <input type="radio" name="ms" value="married"/> Married <br/> <br/>
+			<input type="submit" value="Continue" /> <input type="reset" value="Cancle" />
+		</form>
+	</section>
+</body>
+</html>
