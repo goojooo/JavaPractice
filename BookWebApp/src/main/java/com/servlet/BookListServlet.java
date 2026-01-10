@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import jakarta.servlet.ServletException;
@@ -13,10 +14,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/register")
+@WebServlet("/bookList")
+public class BookListServlet extends HttpServlet {
 
-public class RegisterServlet extends HttpServlet {
-	private static final String query = "insert into bookData(bookName,bookAddition,bookPrice) values(?,?,?)";
+	private static final String query = "select id, bookName,bookAddition,bookPrice from bookData";
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	// get PrintWriter
@@ -24,10 +25,7 @@ public class RegisterServlet extends HttpServlet {
 		
 	// set Content type
 		resp.setContentType("text/html");
-	//Get the book info
-		String bookName = req.getParameter("bookName");
-		String bookEdition = req.getParameter("bookEdition");
-		float bookPrice = Float.parseFloat(req.getParameter("bookPrice"));
+
 	//Load Driver
 		try
 		{
@@ -41,20 +39,31 @@ public class RegisterServlet extends HttpServlet {
 		try(Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Library_DB","root","gojo");
 				PreparedStatement ps = con.prepareStatement(query);)
 		{
-			ps.setString(1, bookName);
-			ps.setString(2, bookEdition);
-			ps.setFloat(3, bookPrice);
-			
-			int count = ps.executeUpdate();
-			
-			if(count==1)
+	
+			ResultSet rs = ps.executeQuery();
+			pw.println("<table  border='1px solid black' style='margin:auto;'>");
+			pw.println("<tr>");
+			pw.println("<th> Book ID </th>");
+			pw.println("<th> Book Name </th>");
+			pw.println("<th> Book Eddition </th>");
+			pw.println("<th> Book Price </th>");
+			pw.println("<th> Edit </th>");
+			pw.println("<th> Delete </th>");
+			pw.println("</tr>");
+		
+			while(rs.next())
 			{
-				pw.println("<h3>record is Register successfully</h3>");
-			} 
-			else
-			{
-				pw.println("<h3>record is Not Register successfully</h3>");
+				pw.println("<tr>");
+				pw.println("<td>"+rs.getInt(1)+"</td>");
+				pw.println("<td>"+rs.getString(2)+"</td>");
+				pw.println("<td>"+rs.getString(3)+"</td>");
+				pw.println("<td>"+rs.getFloat(4)+"</td>");
+				pw.println("<td><a href='editScreen? id="+rs.getInt(1)+"'>Edit</a></td>");
+				pw.println("<td><a href='deleteUrl? id="+rs.getInt(1)+"'>Delete</a></td>");
+				pw.println("</tr>");
 			}
+			pw.println("</table>");
+	
 		}
 		catch(SQLException e)
 		{
@@ -62,9 +71,7 @@ public class RegisterServlet extends HttpServlet {
 			pw.println("<h3>"+e.getMessage()+"</h3>");
 		}
 		pw.println(" <a href='home.html'>HOME</a>");
-		pw.println(" <br>");
-		pw.println(" <a href='bookList'>Book List</a>");
-	}
+			}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
