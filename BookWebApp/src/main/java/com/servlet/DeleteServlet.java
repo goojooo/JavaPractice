@@ -5,7 +5,6 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import jakarta.servlet.ServletException;
@@ -14,10 +13,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/editScreen")
-public class EditScreenServlet extends HttpServlet {
-
-	private static final String query = "select bookName,bookAddition,bookPrice from bookData where id = ?";
+@WebServlet("/deleteUrl")
+public class DeleteServlet extends HttpServlet {
+	private static final String query = "delete from bookData where id = ?";
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	// get PrintWriter
@@ -29,6 +27,8 @@ public class EditScreenServlet extends HttpServlet {
 	// get the id record 
 		int id = Integer.parseInt(req.getParameter("id"));
 
+
+		
 	//Load Driver
 		try
 		{
@@ -42,35 +42,15 @@ public class EditScreenServlet extends HttpServlet {
 		try(Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Library_DB","root","gojo");
 				PreparedStatement ps = con.prepareStatement(query);)
 		{
-	
 			ps.setInt(1, id);
-			ResultSet rs = ps.executeQuery();
-			if(rs.next()) {
-
-				pw.println("<form action='editUrl?id="+id+"' method='post'>");
-				pw.println("<table  border='1px solid black' style='margin:auto;'>");
-					pw.println("<tr>");
-						pw.println("<td>Book Name</td>");
-						pw.println("<td><input type='text' name='bookName' value='"+rs.getString(1)+"'></td>");
-					pw.println("</tr>");
-					pw.println("<tr>");
-						pw.println("<td>Book Edition</td>");
-						pw.println("<td><input type='text' name='bookEdition' value='"+rs.getString(2)+"'></td>");
-					pw.println("</tr>");
-					pw.println("<tr>");
-						pw.println("<td>Book Price</td>");
-						pw.println("<td><input type='text' name='bookPrice' value='"+rs.getFloat(3)+"'></td>");
-					pw.println("</tr>");
-					pw.println("<tr>");
-						pw.println("<td><input type='submit' value='Edit'></td>");
-						pw.println("<td><input type='reset' value='Cancle'></td>");
-					pw.println("</tr>");
-				pw.println("</table>");
-			pw.println("</form>");
-				} else {
-				   pw.println("<h3>Record not found</h3>");
-				}
-	
+			int count = ps.executeUpdate();
+			if(count==1)
+			{
+				pw.println("<h2>Record is deleted successfully</h2>");
+			}else
+			{
+				pw.println("<h2>Record is not deleted !!!</h2>");
+			}
 		}
 		catch(SQLException e)
 		{
@@ -78,6 +58,8 @@ public class EditScreenServlet extends HttpServlet {
 			pw.println("<h3>"+e.getMessage()+"</h3>");
 		}
 		pw.println(" <a href='home.html'>HOME</a>");
+		pw.println(" <br>");
+		pw.println(" <a href='bookList'>Book List</a>");
 			}
 	
 	@Override

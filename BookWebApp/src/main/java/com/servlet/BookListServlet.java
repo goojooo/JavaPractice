@@ -58,8 +58,8 @@ public class BookListServlet extends HttpServlet {
 				pw.println("<td>"+rs.getString(2)+"</td>");
 				pw.println("<td>"+rs.getString(3)+"</td>");
 				pw.println("<td>"+rs.getFloat(4)+"</td>");
-				pw.println("<td><a href='editScreen? id="+rs.getInt(1)+"'>Edit</a></td>");
-				pw.println("<td><a href='deleteUrl? id="+rs.getInt(1)+"'>Delete</a></td>");
+				pw.println("<td><a href='editScreen?id="+rs.getInt(1)+"'>Edit</a></td>");
+				pw.println("<td><a href='deleteUrl?id="+rs.getInt(1)+"'>Delete</a></td>");
 				pw.println("</tr>");
 			}
 			pw.println("</table>");
