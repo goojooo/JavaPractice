@@ -18,7 +18,7 @@ public class TopicServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
-		try(PrintWriter pw = response.getWriter())
+		//try(PrintWriter pw = response.getWriter());
 	}
 
 
