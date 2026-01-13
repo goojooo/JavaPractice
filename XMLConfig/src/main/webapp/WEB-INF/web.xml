@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <web-app>
+    <context-param>
+        <param-name>dbURL</param-name>
+        <param-value>jdbc:mysql://localhost:3306/mydb</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>dbUser</param-name>
+        <param-value>root</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>dbPassword</param-name>
+        <param-value>secret123</param-value>
+    </context-param>
+</web-app>

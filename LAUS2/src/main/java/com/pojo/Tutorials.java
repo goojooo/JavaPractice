@@ -9,8 +9,51 @@ public class Tutorials {
 	private Date date ;
 	private int visits;
 	private int topics_id;
-	
-	public Tutorials(int tutorialId, String name, String author, Date date, int visits, int topics_id) {
+	private String contents;
+	public int getTutorialId() {
+		return tutorialId;
+	}
+	public void setTutorialId(int tutorialId) {
+		this.tutorialId = tutorialId;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getAuthor() {
+		return author;
+	}
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	public int getVisits() {
+		return visits;
+	}
+	public void setVisits(int visits) {
+		this.visits = visits;
+	}
+	public int getTopics_id() {
+		return topics_id;
+	}
+	public void setTopics_id(int topics_id) {
+		this.topics_id = topics_id;
+	}
+	public String getContents() {
+		return contents;
+	}
+	public void setContents(String contents) {
+		this.contents = contents;
+	}
+	public Tutorials(int tutorialId, String name, String author, Date date, int visits, int topics_id,
+			String contents) {
 		super();
 		this.tutorialId = tutorialId;
 		this.name = name;
@@ -18,60 +61,12 @@ public class Tutorials {
 		this.date = date;
 		this.visits = visits;
 		this.topics_id = topics_id;
+		this.contents = contents;
 	}
-
-	public int getTutorialId() {
-		return tutorialId;
-	}
-
-	public void setTutorialId(int tutorialId) {
-		this.tutorialId = tutorialId;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(String author) {
-		this.author = author;
-	}
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-	public int getVisits() {
-		return visits;
-	}
-
-	public void setVisits(int visits) {
-		this.visits = visits;
-	}
-
-	public int getTopics_id() {
-		return topics_id;
-	}
-
-	public void setTopics_id(int topics_id) {
-		this.topics_id = topics_id;
-	}
-
 	@Override
 	public String toString() {
 		return "Tutorials [tutorialId=" + tutorialId + ", name=" + name + ", author=" + author + ", date=" + date
-				+ ", visits=" + visits + ", topics_id=" + topics_id + "]";
+				+ ", visits=" + visits + ", topics_id=" + topics_id + ", contents=" + contents + "]";
 	}
 	
 	
