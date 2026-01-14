@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app>
 
+<welcome-file-list>
+    <welcome-file>login.html</welcome-file>
+</welcome-file-list>
+
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>pages.LoginServlet</servlet-class>
@@ -51,6 +55,39 @@
 <servlet-mapping>
     <servlet-name>ViewProductsServlet</servlet-name>
     <url-pattern>/viewProducts</url-pattern>
+</servlet-mapping>
+
+
+<servlet>
+    <servlet-name>UpdateStockServlet</servlet-name>
+    <servlet-class>pages.UpdateStockServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>UpdateStockServlet</servlet-name>
+    <url-pattern>/updateStock</url-pattern>
+</servlet-mapping>
+
+
+<servlet>
+    <servlet-name>LowStockServlet</servlet-name>
+    <servlet-class>pages.LowStockServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>LowStockServlet</servlet-name>
+    <url-pattern>/lowStock</url-pattern>
+</servlet-mapping>
+
+
+<servlet>
+    <servlet-name>StockHistoryServlet</servlet-name>
+    <servlet-class>pages.StockHistoryServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>StockHistoryServlet</servlet-name>
+    <url-pattern>/stockHistory</url-pattern>
 </servlet-mapping>
 
     

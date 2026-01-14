@@ -66,4 +66,36 @@ public class ProductDaoImpl implements IProductDao {
 
         return productList;
     }
+
+	@Override
+	public List<Product> getLowStockProducts(int threshold) {
+
+	    List<Product> lowStockList = new ArrayList<>();
+
+	    try {
+	        Connection con = DBUtility.getConnection();
+
+	        String sql = "SELECT * FROM products WHERE quantity < ?";
+	        PreparedStatement ps = con.prepareStatement(sql);
+	        ps.setInt(1, threshold);
+
+	        ResultSet rs = ps.executeQuery();
+
+	        while (rs.next()) {
+	            Product product = new Product();
+	            product.setProductId(rs.getInt("product_id"));
+	            product.setProductName(rs.getString("product_name"));
+	            product.setPrice(rs.getDouble("price"));
+	            product.setQuantity(rs.getInt("quantity"));
+
+	            lowStockList.add(product);
+	        }
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+
+	    return lowStockList;
+	}
+
 }

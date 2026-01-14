@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Stock</title>
+</head>
+<body>
+
+<h2>Update Stock</h2>
+
+<form action="updateStock" method="post">
+
+    Product ID: <input type="number" name="productId" required><br><br>
+
+    Quantity: <input type="number" name="qty" required><br><br>
+
+    Type:
+    <select name="type">
+        <option value="IN">Add Stock</option>
+        <option value="OUT">Remove Stock</option>
+    </select><br><br>
+
+    <input type="submit" value="Update">
+</form>
+
+</body>
+</html>
