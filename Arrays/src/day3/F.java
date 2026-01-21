@@ -19,7 +19,7 @@ public class F {
 		}
 		int a2[] = Arrays.copyOf(a,5);
 		
-		System.out.println("Array elements a2 using copyOf() : ");
+		System.out.println("Array elements a : ");
 		for(int i = 0 ; i < a.length ; i++)
 		{
 			System.out.println(a2[i]);
