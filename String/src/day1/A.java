@@ -8,9 +8,11 @@ public class A {
 		// CharSequence is interface 
 		// String is a class 
 		// String is immutable  object 
+		// to create strings there are three class 1.String 2.StringBuffer 3.StringBuilder
+		String x = new String();
+		x =" xyz";
 		String name = "Nayan";
-		name = "dahare";
-		System.out.println(name);
+		System.out.println(name + x + ".");
 	}
 
 }
