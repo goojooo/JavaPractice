@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Inventory Dashboard</title>
+
+<style>
+* {
+	box-sizing: border-box;
+	font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+	margin: 0;
+	background: #f4f6f9;
+}
+
+/* Top Header */
+.header {
+	background: #1f3d4c;
+	color: white;
+	padding: 16px 30px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.header h2 {
+	margin: 0;
+}
+
+.logout {
+	background: #e74c3c;
+	padding: 8px 16px;
+	border-radius: 6px;
+	color: white;
+	text-decoration: none;
+	font-size: 14px;
+}
+
+.logout:hover {
+	background: #c0392b;
+}
+
+/* Dashboard Grid */
+.dashboard {
+	padding: 40px;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 25px;
+}
+
+/* Cards */
+.card {
+	background: white;
+	border-radius: 14px;
+	padding: 25px;
+	text-align: center;
+	box-shadow: 0 15px 25px rgba(0,0,0,0.15);
+	transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+	transform: translateY(-8px);
+	box-shadow: 0 25px 40px rgba(0,0,0,0.2);
+}
+
+.card h3 {
+	margin-bottom: 10px;
+	color: #1f3d4c;
+}
+
+.card p {
+	color: #666;
+	font-size: 14px;
+	margin-bottom: 20px;
+}
+
+/* Card Button */
+.card a {
+	display: inline-block;
+	padding: 10px 22px;
+	background: #1f3d4c;
+	color: white;
+	border-radius: 6px;
+	text-decoration: none;
+	font-size: 14px;
+}
+
+.card a:hover {
+	background: #16313d;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Header -->
+<div class="header">
+	<h2>Inventory Management Dashboard</h2>
+	<a class="logout" href="logout">Logout</a>
+</div>
+
+<!-- Dashboard Content -->
+<div class="dashboard">
+
+	<div class="card">
+		<h3>Add Product</h3>
+		<p>Create new products in inventory</p>
+		<a href="addProduct.html">Open</a>
+	</div>
+
+	<div class="card">
+		<h3>View Products</h3>
+		<p>See available stock</p>
+		<a href="viewProducts">Open</a>
+	</div>
+
+	<div class="card">
+		<h3>Update Stock</h3>
+		<p>Increase or modify product quantity</p>
+		<a href="updateStock.html">Open</a>
+	</div>
+
+	<div class="card">
+		<h3>Low Stock Alert</h3>
+		<p>Check products running low</p>
+		<a href="lowStock">Open</a>
+	</div>
+
+	<div class="card">
+		<h3>Stock History</h3>
+		<p>View IN / OUT transaction logs</p>
+		<a href="stockHistory">Open</a>
+	</div>
+
+</div>
+
+</body>
+</html>
